@@ -1,13 +1,30 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/schedule_type.rb": [
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/resource.rb": [
+        1,
+        1,
+        null,
         1,
         1,
         null
       ],
       "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/application_record.rb": [
         1,
+        1,
+        null
+      ],
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/resource_type.rb": [
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/role.rb": [
+        1,
+        1,
+        null,
         1,
         null
       ],
@@ -38,6 +55,6 @@
         0
       ]
     },
-    "timestamp": 1544395900
+    "timestamp": 1544393735
   }
 }
