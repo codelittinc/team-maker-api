@@ -1,6 +1,7 @@
 {
   "RSpec": {
     "coverage": {
+<<<<<<< HEAD
       "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/resource.rb": [
         1,
         1,
