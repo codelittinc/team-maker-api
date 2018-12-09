@@ -14,26 +14,26 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-12-09T20:01:34-02:00">2018-12-09T20:01:34-02:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-12-09T20:15:35-02:00">2018-12-09T20:15:35-02:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">20.0%</span></span>
+    (<span class="covered_percent"><span class="red">42.86%</span></span>
      covered at
      <span class="covered_strength">
        <span class="red">
-         0.2
+         0.43
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
-    <b>7</b> files in total.
-    <b>20</b> relevant lines. 
-    <span class="green"><b>4</b> lines covered</span> and
+    <b>9</b> files in total.
+    <b>28</b> relevant lines. 
+    <span class="green"><b>12</b> lines covered</span> and
     <span class="red"><b>16</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -111,11 +111,31 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#87fa77c8df2cf945a2439b47cf351d35d03ecf10" class="src_link" title="app/models/resource.rb">app/models/resource.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>6</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#7fac3e1671d458b61a04a0c02703a6cf425fd40a" class="src_link" title="app/models/resource_type.rb">app/models/resource_type.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>5</td>
         <td>3</td>
-        <td>2</td>
-        <td>2</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#427f10ccf9148ecf572ea775d4b94a936648289a" class="src_link" title="app/models/role.rb">app/models/role.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>5</td>
+        <td>3</td>
+        <td>3</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -186,9 +206,9 @@
   </h2>
   <a name="Models"></a>
   <div>
-    <b>2</b> files in total.
-    <b>4</b> relevant lines. 
-    <span class="green"><b>4</b> lines covered</span> and
+    <b>4</b> files in total.
+    <b>12</b> relevant lines. 
+    <span class="green"><b>12</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -216,11 +236,31 @@
       </tr>
       
       <tr>
+        <td class="strong"><a href="#87fa77c8df2cf945a2439b47cf351d35d03ecf10" class="src_link" title="app/models/resource.rb">app/models/resource.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>6</td>
+        <td>4</td>
+        <td>4</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
         <td class="strong"><a href="#7fac3e1671d458b61a04a0c02703a6cf425fd40a" class="src_link" title="app/models/resource_type.rb">app/models/resource_type.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>5</td>
         <td>3</td>
-        <td>2</td>
-        <td>2</td>
+        <td>3</td>
+        <td>0</td>
+        <td>1.0</td>
+      </tr>
+      
+      <tr>
+        <td class="strong"><a href="#427f10ccf9148ecf572ea775d4b94a936648289a" class="src_link" title="app/models/role.rb">app/models/role.rb</a></td>
+        <td class="green strong">100.0 %</td>
+        <td>5</td>
+        <td>3</td>
+        <td>3</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
@@ -693,13 +733,68 @@
 </div>
 
       
+        <div class="source_table" id="87fa77c8df2cf945a2439b47cf351d35d03ecf10">
+  <div class="header">
+    <h3>app/models/resource.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>4</b> relevant lines. 
+      <span class="green"><b>4</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Resource &lt; ApplicationRecord</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :name, presence: true, uniqueness: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  belongs_to :role</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  belongs_to :resource_type</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
         <div class="source_table" id="7fac3e1671d458b61a04a0c02703a6cf425fd40a">
   <div class="header">
     <h3>app/models/resource_type.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>2</b> relevant lines. 
-      <span class="green"><b>2</b> lines covered</span> and
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -720,6 +815,67 @@
         </li>
       
         <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  has_many :resources</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
+          
+          
+          <code class="ruby">end</code>
+        </li>
+      
+    </ol>
+  </pre>
+</div>
+
+      
+        <div class="source_table" id="427f10ccf9148ecf572ea775d4b94a936648289a">
+  <div class="header">
+    <h3>app/models/role.rb</h3>
+    <h4><span class="green">100.0 %</span> covered</h4>
+    <div>
+      <b>3</b> relevant lines. 
+      <span class="green"><b>3</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
+    </div>
+  </div>
+  
+  <pre>
+    <ol>
+      
+        <li class="covered" data-hits="1" data-linenumber="1">
+          <span class="hits">1</span>
+          
+          <code class="ruby">class Role &lt; ApplicationRecord</code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="2">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :name, presence: true, uniqueness: true</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="3">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="4">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  has_many :resources</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby">end</code>
