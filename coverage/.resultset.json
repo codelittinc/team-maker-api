@@ -1,6 +1,16 @@
 {
   "RSpec": {
     "coverage": {
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/project_status.rb": [
+        1,
+        1,
+        null
+      ],
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ],
       "/home/raphael/code/engineering-team-workflow/team-maker-api/app/channels/application_cable/channel.rb": [
         0,
         0,
@@ -26,17 +36,8 @@
       "/home/raphael/code/engineering-team-workflow/team-maker-api/app/controllers/application_controller.rb": [
         0,
         0
-      ],
-      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/project_status.rb": [
-        0,
-        0
-      ],
-      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/application_record.rb": [
-        0,
-        0,
-        0
       ]
     },
-    "timestamp": 1544388677
+    "timestamp": 1544389926
   }
 }
