@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/role.rb": [
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/resource_type.rb": [
         1,
         1,
         null
@@ -38,6 +38,6 @@
         0
       ]
     },
-    "timestamp": 1544391659
+    "timestamp": 1544392894
   }
 }
