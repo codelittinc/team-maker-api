@@ -1,13 +1,22 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/project_status.rb": [
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/project.rb": [
         1,
+        1,
+        null,
         1,
         null
       ],
       "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/application_record.rb": [
         1,
+        1,
+        null
+      ],
+      "/home/raphael/code/engineering-team-workflow/team-maker-api/app/models/project_status.rb": [
+        1,
+        1,
+        null,
         1,
         null
       ],
@@ -38,6 +47,6 @@
         0
       ]
     },
-    "timestamp": 1544389926
+    "timestamp": 1544390986
   }
 }
