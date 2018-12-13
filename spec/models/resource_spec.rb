@@ -8,4 +8,6 @@ RSpec.describe Resource, type: :model do
   it { is_expected.to belong_to(:resource_type) }
 
   it { is_expected.to belong_to(:role) }
+
+  it { is_expected.to have_many(:schedules) }
 end
