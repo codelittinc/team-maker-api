@@ -12,12 +12,12 @@ RSpec.describe ResourcesController, type: :controller do
       get :index
     end
 
-    let(:resources) { Resource.first }
+    let(:resource) { Resource.first }
 
     it { expect(response.body).to look_like_json }
 
     it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
 
-    it { expect(body_as_json).to match(resources.attributes) }
+    it { expect(body_as_json).to match(resource.attributes) }
   end
 end
