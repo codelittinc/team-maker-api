@@ -22,21 +22,20 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'GET #show/:id' do
-    before do
-      role = Role.create!(name: 'Engineer')
-      resources_type = ResourceType.create!(name: 'Employee')
-      @resource = Resource.create!(name: 'Kaio Cristian',
+    let(:role) { Role.create!(name: 'Engineer') }
+    let(:resources_type) { ResourceType.create!(name: 'Employee') }
+    let(:resource) { Resource.create!(name: 'Kaio Cristian',
                                    role_id: role.id,
-                                   resource_type_id: resources_type.id)
-
-      get :show, params: { id: @resource.id }
+                                   resource_type_id: resources_type.id) }
+    let(:reference_hash) do
+      { id: resource.id,
+        name: resource.name,
+        role_id: resource.role_id,
+        resource_type_id: resource.resource_type_id }
     end
 
-    let(:reference_hash) do
-      { id: @resource.id,
-        name: @resource.name,
-        role_id: @resource.role_id,
-        resource_type_id: @resource.resource_type_id }
+    before do
+      get :show, params: { id: resource.id }
     end
 
     it { expect(response.body).to look_like_json }
