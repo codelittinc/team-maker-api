@@ -20,4 +20,22 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(body_as_json).to match(resource.attributes) }
   end
+
+  describe 'GET #show/:id' do
+    before do
+      role = Role.create!(name: 'Engineer')
+      resources_type = ResourceType.create!(name: 'Employee')
+      @resource = Resource.create!(name: 'Kaio Cristian',
+                       role_id: role.id,
+                       resource_type_id: resources_type.id)
+
+      get :show, params: { id: @resource.id }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
+
+    it { expect(body_as_json).to match(@resource.attributes) }
+  end
 end
