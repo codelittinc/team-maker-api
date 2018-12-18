@@ -6,8 +6,14 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    @resource = Resource.find(params[:id])
+    @resource = Resource.find(resource_id_params[:id])
 
     render json: @resource
+  end
+
+  private
+
+  def resource_id_params
+    params.permit(:id)
   end
 end
