@@ -9,6 +9,8 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(resource_id_params[:id])
 
     render json: @resource
+  rescue StandardError => error
+    render json: { error: error }
   end
 
   private
