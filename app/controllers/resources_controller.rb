@@ -23,6 +23,14 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def destroy
+    @resource = Resource.find(resource_id_params[:id])
+
+    @resource.destroy
+  rescue StandardError => error
+    render json: { error: error }
+  end
+
   private
 
   def resource_id_params
