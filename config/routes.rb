@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 
   resources :resources
 
-  resources :tag
+  resources :tags
 end

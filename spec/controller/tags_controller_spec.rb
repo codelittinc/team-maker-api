@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TagController, type: :controller do
+RSpec.describe TagsController, type: :controller do
   describe 'GET #index' do
     before do
       role = Role.create!(name: 'Engineer')
