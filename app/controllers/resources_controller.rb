@@ -6,7 +6,7 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    @resource = Resource.find(resource_id_params[:id])
+    @resource = resource
 
     render json: @resource
   rescue StandardError => error
@@ -24,11 +24,21 @@ class ResourcesController < ApplicationController
   end
 
   def destroy
-    @resource = Resource.find(resource_id_params[:id])
+    @resource = resource
 
     @resource.destroy
   rescue StandardError => error
     render json: { error: error }
+  end
+
+  def update
+    @resource = resource
+
+    if @resource.update(resource_params)
+      render json: @resource
+    else
+      render json: @resource.errors, status: :unprocessable_entity
+    end
   end
 
   private
@@ -39,5 +49,9 @@ class ResourcesController < ApplicationController
 
   def resource_params
     params.require(:resource).permit(:name, :role_id, :resource_type_id)
+  end
+
+  def resource
+    Resource.find(resource_id_params[:id])
   end
 end
