@@ -23,6 +23,14 @@ class TagsController < ApplicationController
     end
   end
 
+  def destroy
+    @tag = tag
+
+    @tag.destroy
+  rescue StandardError => error
+    render json: { error: error }
+  end
+
   private
 
   def tag_id_params

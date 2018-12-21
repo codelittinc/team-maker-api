@@ -72,4 +72,20 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(body_as_json).to match(reference_hash) }
   end
+
+  describe 'DELETE #destroy' do
+    let(:role) { Role.create!(name: 'Engineer') }
+    let(:resources_type) { ResourceType.create!(name: 'Employee') }
+    let(:resource) { Resource.create!(name: 'Kaio Cristian',
+                                   role_id: role.id,
+                                   resource_type_id: resources_type.id) }
+    let(:tag) { Tag.create!(name: 'Ruby', resource_id: resource.id) }
+    let(:destroy_action) { delete :destroy, params: { id: tag.id } }
+
+    before do
+      tag
+    end
+
+    it { expect { destroy_action }. to change(Tag, :count).by(-1) }
+  end
 end
