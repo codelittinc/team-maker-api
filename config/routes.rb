@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :roles
 
   resources :resources
+
+  resources :tags
 end
