@@ -31,6 +31,16 @@ class TagsController < ApplicationController
     render json: { error: error }
   end
 
+  def update
+    @tag = tag
+
+    if @tag.update(tag_params)
+      render json: @tag
+    else
+      render json: @tag.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def tag_id_params

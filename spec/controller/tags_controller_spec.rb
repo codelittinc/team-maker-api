@@ -88,4 +88,32 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect { destroy_action }. to change(Tag, :count).by(-1) }
   end
+
+  describe 'PATCH #update' do
+    let(:role) { Role.create!(name: 'Engineer') }
+    let(:resources_type) { ResourceType.create!(name: 'Employee') }
+    let(:resource) { Resource.create!(name: 'Kaio Cristian',
+                                   role_id: role.id,
+                                   resource_type_id: resources_type.id) }
+    let(:tag) { Tag.create!(name: 'Ruby', resource_id: resource.id) }
+    let(:tag_updated) do
+      { id: Tag.last.id,
+        name: 'Rails',
+        resource_id: resource.id }
+    end
+
+    before do
+      tag
+
+      patch :update, params: { id: tag.id, tag: tag_updated }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id name resource_id]) }
+
+    it { expect(body_as_json).to match(tag_updated) }
+
+    it { expect(body_as_json).to_not match(tag) }
+  end
 end
