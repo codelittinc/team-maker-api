@@ -3,12 +3,7 @@ require 'rails_helper'
 RSpec.describe TagsController, type: :controller do
   describe 'GET #index' do
     before do
-      role = Role.create!(name: 'Engineer')
-      resources_type = ResourceType.create!(name: 'Employee')
-      resource = Resource.create!(name: 'Kaio Cristian',
-                                  role_id: role.id,
-                                  resource_type_id: resources_type.id)
-      Tag.create!(name: 'Ruby', resource_id: resource.id)
+      Tag.create!(name: 'Ruby')
 
       get :index
     end
@@ -17,23 +12,17 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name resource_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
     it { expect(body_as_json).to match(tag.attributes) }
   end
 
   describe 'GET #show/:id' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                      role_id: role.id,
-                                      resource_type_id: resources_type.id) }
-    let(:tag) { Tag.create!(name: 'Ruby', resource_id: resource.id) }
+    let(:tag) { Tag.create!(name: 'Ruby') }
 
     let(:reference_hash) do
       { id: tag.id,
-        name: tag.name,
-        resource_id: tag.resource_id }
+        name: tag.name }
     end
 
     before do
@@ -42,24 +31,17 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name resource_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
     it { expect(body_as_json).to match(reference_hash) }
   end
 
   describe 'GET #create' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                      role_id: role.id,
-                                      resource_type_id: resources_type.id) }
-
-    let(:tag) { { name: 'Ruby', resource_id: resource.id } }
+    let(:tag) { { name: 'Ruby' } }
 
     let(:reference_hash) do
       { id: Tag.last.id,
-        name: 'Ruby',
-        resource_id: resource.id }
+        name: 'Ruby' }
     end
 
     before do
@@ -68,18 +50,13 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name resource_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
     it { expect(body_as_json).to match(reference_hash) }
   end
 
   describe 'DELETE #destroy' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id) }
-    let(:tag) { Tag.create!(name: 'Ruby', resource_id: resource.id) }
+    let(:tag) { Tag.create!(name: 'Ruby') }
     let(:destroy_action) { delete :destroy, params: { id: tag.id } }
 
     before do
@@ -90,16 +67,10 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id) }
-    let(:tag) { Tag.create!(name: 'Ruby', resource_id: resource.id) }
+    let(:tag) { Tag.create!(name: 'Ruby') }
     let(:tag_updated) do
       { id: Tag.last.id,
-        name: 'Rails',
-        resource_id: resource.id }
+        name: 'Rails' }
     end
 
     before do
@@ -110,7 +81,7 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name resource_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
     it { expect(body_as_json).to match(tag_updated) }
 

@@ -16,7 +16,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
     it { expect(body_as_json).to match(resource.attributes) }
   end
@@ -31,7 +31,8 @@ RSpec.describe ResourcesController, type: :controller do
       { id: resource.id,
         name: resource.name,
         role_id: resource.role_id,
-        resource_type_id: resource.resource_type_id }
+        resource_type_id: resource.resource_type_id,
+        tag_id: nil }
     end
 
     before do
@@ -40,7 +41,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
     it { expect(body_as_json).to match(reference_hash) }
   end
@@ -52,14 +53,16 @@ RSpec.describe ResourcesController, type: :controller do
     let(:resource) do
       { name: 'Kaio Cristian',
         role_id: role.id,
-        resource_type_id: resources_type.id }
+        resource_type_id: resources_type.id,
+        tag_id: nil }
     end
 
     let(:reference_hash) do
       { id: Resource.last.id,
         name: 'Kaio Cristian',
         role_id: role.id,
-        resource_type_id: resources_type.id }
+        resource_type_id: resources_type.id,
+        tag_id: nil }
     end
 
     before do
@@ -68,7 +71,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
     it { expect(body_as_json).to match(reference_hash) }
   end
@@ -99,7 +102,8 @@ RSpec.describe ResourcesController, type: :controller do
       { id: Resource.last.id,
         name: 'Raphael André',
         role_id: role.id,
-        resource_type_id: resources_type.id }
+        resource_type_id: resources_type.id,
+        tag_id: nil }
     end
 
     before do
@@ -110,7 +114,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id]) }
+    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
     it { expect(body_as_json).to match(resource_updated) }
 
