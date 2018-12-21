@@ -9,7 +9,7 @@ RSpec.describe Resource, type: :model do
 
   it { is_expected.to belong_to(:role) }
 
-  it { is_expected.to have_many(:schedules) }
+  it { is_expected.to belong_to(:tag) }
 
-  it { is_expected.to have_many(:tags) }
+  it { is_expected.to have_many(:schedules) }
 end

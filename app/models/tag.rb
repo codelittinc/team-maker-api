@@ -1,5 +1,5 @@
 class Tag < ApplicationRecord
   validates :name, presence: true
 
-  belongs_to :resource
+  has_many :resources
 end
