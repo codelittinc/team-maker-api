@@ -8,13 +8,16 @@ RSpec.describe TagsController, type: :controller do
       get :index
     end
 
-    let(:tag) { Tag.first }
+    let(:tag) { Tag.all }
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name]) }
+    it { expect{
+          body_as_json.each { |a| expect(a.keys).to match_array(%w[id name]) }
+                }
+        }
 
-    it { expect(body_as_json).to match(tag.attributes) }
+    it { expect(body_as_json).to match(tag.as_json) }
   end
 
   describe 'GET #show/:id' do
@@ -33,7 +36,7 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
-    it { expect(body_as_json).to match(reference_hash) }
+    it { expect(body_as_json).to match(reference_hash.as_json) }
   end
 
   describe 'GET #create' do
@@ -52,7 +55,7 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
-    it { expect(body_as_json).to match(reference_hash) }
+    it { expect(body_as_json).to match(reference_hash.as_json) }
   end
 
   describe 'DELETE #destroy' do
@@ -83,7 +86,7 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name]) }
 
-    it { expect(body_as_json).to match(tag_updated) }
+    it { expect(body_as_json).to match(tag_updated.as_json) }
 
     it { expect(body_as_json).to_not match(tag) }
   end

@@ -8,12 +8,15 @@ RSpec.describe RolesController, type: :controller do
       get :index
     end
 
-    let(:role) { Role.first }
+    let(:role) { Role.all }
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name]) }
+    it { expect{
+          body_as_json.each { |a| expect(a.keys).to match_array(%w[id name]) }
+                }
+        }
 
-    it { expect(body_as_json).to match(role.attributes) }
+    it { expect(body_as_json).to match(role.as_json) }
   end
 end
