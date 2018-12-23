@@ -5,7 +5,9 @@ ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
-
+# Generate beautiful API documentation, including a UI to explore and test operations, directly from your rspec integration tests.
+gem 'rswag', '~> 2.0', '>= 2.0.5'
+# Pg is the Ruby interface to the PostgreSQL RDBMS.
 gem 'pg', '~> 1.1', '>= 1.1.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
