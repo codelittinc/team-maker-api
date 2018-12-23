@@ -17,9 +17,7 @@ RSpec.describe ResourcesController, type: :controller do
     it { expect(response.body).to look_like_json }
 
     it 'Every object on response should have the own attributes as keys'do
-      expect{
-             body_as_json.each { |a| expect(a.keys).to match_array(%w[id name]) }
-            }
+      body_as_json.each { |resource| expect(resource.keys).to match_array(%w[id name resource_type_id role_id tag_id]) }
     end
 
     it { expect(body_as_json).to match(resources.as_json) }
