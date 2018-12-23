@@ -12,13 +12,15 @@ RSpec.describe ResourcesController, type: :controller do
       get :index
     end
 
-    let(:resource) { Resource.first }
+    let(:resources) { Resource.all }
 
     it { expect(response.body).to look_like_json }
 
-    it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
+    it 'Every object on response should have the own attributes as keys'do
+      body_as_json.each { |resource| expect(resource.keys).to match_array(%w[id name resource_type_id role_id tag_id]) }
+    end
 
-    it { expect(body_as_json).to match(resource.attributes) }
+    it { expect(body_as_json).to match(resources.as_json) }
   end
 
   describe 'GET #show/:id' do
@@ -43,7 +45,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
-    it { expect(body_as_json).to match(reference_hash) }
+    it { expect(body_as_json).to match(reference_hash.as_json) }
   end
 
   describe 'GET #create' do
@@ -73,7 +75,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
-    it { expect(body_as_json).to match(reference_hash) }
+    it { expect(body_as_json).to match(reference_hash.as_json) }
   end
 
   describe 'DELETE #destroy' do
@@ -116,7 +118,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(body_as_json.keys).to match_array(%w[id name role_id resource_type_id tag_id]) }
 
-    it { expect(body_as_json).to match(resource_updated) }
+    it { expect(body_as_json).to match(resource_updated.as_json) }
 
     it { expect(body_as_json).to_not match(resource) }
   end
