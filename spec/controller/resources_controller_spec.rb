@@ -12,7 +12,7 @@ RSpec.describe ResourcesController, type: :controller do
       get :index
     end
 
-    let(:resource) { Resource.all }
+    let(:resources) { Resource.all }
 
     it { expect(response.body).to look_like_json }
 
@@ -21,7 +21,7 @@ RSpec.describe ResourcesController, type: :controller do
                 }
         }
 
-    it { expect(body_as_json).to match(resource.as_json) }
+    it { expect(body_as_json).to match(resources.as_json) }
   end
 
   describe 'GET #show/:id' do

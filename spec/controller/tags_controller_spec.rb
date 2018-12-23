@@ -8,7 +8,7 @@ RSpec.describe TagsController, type: :controller do
       get :index
     end
 
-    let(:tag) { Tag.all }
+    let(:tags) { Tag.all }
 
     it { expect(response.body).to look_like_json }
 
@@ -17,7 +17,7 @@ RSpec.describe TagsController, type: :controller do
                 }
         }
 
-    it { expect(body_as_json).to match(tag.as_json) }
+    it { expect(body_as_json).to match(tags.as_json) }
   end
 
   describe 'GET #show/:id' do

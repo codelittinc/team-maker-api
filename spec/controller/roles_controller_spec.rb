@@ -8,7 +8,7 @@ RSpec.describe RolesController, type: :controller do
       get :index
     end
 
-    let(:role) { Role.all }
+    let(:roles) { Role.all }
 
     it { expect(response.body).to look_like_json }
 
@@ -17,6 +17,6 @@ RSpec.describe RolesController, type: :controller do
                 }
         }
 
-    it { expect(body_as_json).to match(role.as_json) }
+    it { expect(body_as_json).to match(roles.as_json) }
   end
 end
