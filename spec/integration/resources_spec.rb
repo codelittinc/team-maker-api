@@ -16,10 +16,10 @@ describe 'Resources API' do
       }
 
       response '201', 'Created' do
-        let(:role) { Role.create!(name: 'CEO') }
-        let(:resources_type) { ResourceType.create!(name: 'Intern') }
+        let(:role) { Role.create!(name: 'VP') }
+        let(:resources_type) { ResourceType.create!(name: 'Full Time') }
         let(:resource) do
-          { name: 'Kaio Cristian',
+          { name: 'Raphael',
             role_id: role.id,
             resource_type_id: resources_type.id }
         end
@@ -48,10 +48,10 @@ describe 'Resources API' do
                },
                required: %w[name role_id resource_type_id]
 
-        let(:role) { Role.create!(name: 'CEO') }
-        let(:resources_type) { ResourceType.create!(name: 'Intern') }
+        let(:role) { Role.create!(name: 'Intern') }
+        let(:resources_type) { ResourceType.create!(name: 'Freela') }
         let(:id) do
-          Resource.create!(name: 'Kaio Cristian',
+          Resource.create!(name: 'Marcelo',
                            role_id: role.id,
                            resource_type_id: resources_type.id).id
         end
@@ -71,9 +71,9 @@ describe 'Resources API' do
       produces 'application/json'
 
       response '200', 'OK' do
-        role = Role.create!(name: 'CEO')
-        resources_type = ResourceType.create!(name: 'Intern')
-        Resource.create!(name: 'Kaio Cristian',
+        role = Role.create!(name: 'Software Developer')
+        resources_type = ResourceType.create!(name: 'Temporary')
+        Resource.create!(name: 'Ricardo',
                          role_id: role.id,
                          resource_type_id: resources_type.id)
 
@@ -101,7 +101,7 @@ describe 'Resources API' do
         let(:role) { Role.create!(name: 'CEO') }
         let(:resources_type) { ResourceType.create!(name: 'Intern') }
         let(:id) do
-          Resource.create!(name: 'Kaio Cristian',
+          Resource.create!(name: 'João',
                            role_id: role.id,
                            resource_type_id: resources_type.id).id
         end
