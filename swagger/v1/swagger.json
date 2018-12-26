@@ -5,6 +5,37 @@
     "version": "v1"
   },
   "paths": {
+    "/roles": {
+      "get": {
+        "summary": "Retrieves all roles",
+        "tags": [
+          "Roles"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "post": {
         "summary": "Creates a tag",
