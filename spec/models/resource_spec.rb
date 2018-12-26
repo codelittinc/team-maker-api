@@ -12,4 +12,6 @@ RSpec.describe Resource, type: :model do
   it { is_expected.to have_many(:schedules) }
 
   it { is_expected.to have_many(:resource_tags) }
+
+  it { is_expected.to have_many(:tags) }
 end
