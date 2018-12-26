@@ -5,6 +5,154 @@
     "version": "v1"
   },
   "paths": {
+    "/resources": {
+      "post": {
+        "summary": "Creates a resource",
+        "tags": [
+          "Resources"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "resource_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "role_id",
+                "resource_type_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieves all resources",
+        "tags": [
+          "Resources"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "resource_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "role_id",
+                "resource_type_id"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/resources/{id}": {
+      "get": {
+        "summary": "Retrieves a resource",
+        "tags": [
+          "Resources"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Couldn't find Tag with 'id'=./spec/integration/resources_spec.rb[1:2:1]",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "resource_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "role_id",
+                "resource_type_id"
+              ]
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletes a resource",
+        "tags": [
+          "Resources"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "200": {
+            "description": "Couldn't find Tag with 'id'=./spec/integration/resources_spec.rb[1:4:1]"
+          }
+        }
+      }
+    },
     "/roles": {
       "get": {
         "summary": "Retrieves all roles",
