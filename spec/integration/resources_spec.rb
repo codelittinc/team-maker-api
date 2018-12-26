@@ -2,7 +2,6 @@ require 'swagger_helper'
 
 describe 'Resources API' do
   path '/resources' do
-
     post 'Creates a resource' do
       tags 'Resources'
       consumes 'application/json'
@@ -13,15 +12,17 @@ describe 'Resources API' do
           role_id: { type: :integer },
           resource_type_id: { type: :integer }
         },
-        required: [ 'name', 'role_id', 'resource_type_id' ]
+        required: %w[name role_id resource_type_id]
       }
 
       response '201', 'Created' do
-        let(:role) { Role.create!(name: 'Engineer') }
-        let(:resources_type) { ResourceType.create!(name: 'Contractor') }
-        let(:resource) { { name: 'Kaio Cristian',
-                           role_id: role.id,
-                           resource_type_id: resources_type.id } }
+        let(:role) { Role.create!(name: 'CEO') }
+        let(:resources_type) { ResourceType.create!(name: 'Intern') }
+        let(:resource) do
+          { name: 'Kaio Cristian',
+            role_id: role.id,
+            resource_type_id: resources_type.id }
+        end
         run_test!
       end
 
@@ -33,7 +34,6 @@ describe 'Resources API' do
   end
 
   path '/resources/{id}' do
-
     get 'Retrieves a resource' do
       tags 'Resources'
       produces 'application/json'
@@ -41,18 +41,70 @@ describe 'Resources API' do
 
       response '200', 'OK' do
         schema type: :object,
-          properties: {
-            name: { type: :string },
-            role_id: { type: :integer },
-            resource_type_id: { type: :integer }
-          },
-          required: [ 'name', 'role_id', 'resource_type_id' ]
-        
-        let(:role) { Role.create!(name: 'Designer') }
-        let(:resources_type) { ResourceType.create!(name: 'Contractor') }
-        let(:id) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id).id }
+               properties: {
+                 name: { type: :string },
+                 role_id: { type: :integer },
+                 resource_type_id: { type: :integer }
+               },
+               required: %w[name role_id resource_type_id]
+
+        let(:role) { Role.create!(name: 'CEO') }
+        let(:resources_type) { ResourceType.create!(name: 'Intern') }
+        let(:id) do
+          Resource.create!(name: 'Kaio Cristian',
+                           role_id: role.id,
+                           resource_type_id: resources_type.id).id
+        end
+        run_test!
+      end
+
+      response '200', "Couldn't find Tag with 'id'=#{id}" do
+        let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
+
+  path '/resources' do
+    get 'Retrieves all resources' do
+      tags 'Resources'
+      produces 'application/json'
+
+      response '200', 'OK' do
+        role = Role.create!(name: 'CEO')
+        resources_type = ResourceType.create!(name: 'Intern')
+        Resource.create!(name: 'Kaio Cristian',
+                         role_id: role.id,
+                         resource_type_id: resources_type.id)
+
+        schema type: :object,
+               properties: {
+                 id: { type: :integer },
+                 name: { type: :string },
+                 role_id: { type: :integer },
+                 resource_type_id: { type: :integer }
+               },
+               required: %w[name role_id resource_type_id]
+
+        run_test!
+      end
+    end
+  end
+
+  path '/resources/{id}' do
+    delete 'Deletes a resource' do
+      tags 'Resources'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '204', 'No Content' do
+        let(:role) { Role.create!(name: 'CEO') }
+        let(:resources_type) { ResourceType.create!(name: 'Intern') }
+        let(:id) do
+          Resource.create!(name: 'Kaio Cristian',
+                           role_id: role.id,
+                           resource_type_id: resources_type.id).id
+        end
         run_test!
       end
 
