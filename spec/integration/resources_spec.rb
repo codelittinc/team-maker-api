@@ -1,3 +1,4 @@
+
 require 'swagger_helper'
 
 describe 'Resources API' do
@@ -77,7 +78,7 @@ describe 'Resources API' do
                          role_id: role.id,
                          resource_type_id: resources_type.id)
 
-        schema type: :object,
+        schema type: :json,
                properties: {
                  id: { type: :integer },
                  name: { type: :string },
