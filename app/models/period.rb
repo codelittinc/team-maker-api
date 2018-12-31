@@ -2,5 +2,5 @@ class Period < ApplicationRecord
   validates :starts_at, presence: true
   validates :ends_at, presence: true
 
-  has_many :schedules
+  belongs_to :schedule
 end
