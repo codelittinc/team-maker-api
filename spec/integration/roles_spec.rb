@@ -8,7 +8,9 @@ describe 'Roles API' do
       produces 'application/json'
 
       response '200', 'OK' do
-        Role.create(name: 'Designer')
+        before do
+          create(:role)
+        end
 
         schema type: :json,
           properties: {
