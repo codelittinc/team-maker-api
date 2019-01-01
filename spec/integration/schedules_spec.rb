@@ -52,4 +52,23 @@ describe 'Schedules API' do
       end
     end
   end
+
+  path '/schedules/{id}' do
+    delete 'Deletes a schedule' do
+      tags 'Schedules'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '204', 'No Content' do
+        let(:id) { create(:schedule).id }
+
+        run_test!
+      end
+
+      response '200', "Couldn't find Schedule with 'id'=#{id}" do
+        let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
 end

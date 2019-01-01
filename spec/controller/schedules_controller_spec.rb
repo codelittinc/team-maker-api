@@ -39,4 +39,15 @@ RSpec.describe SchedulesController, type: :controller do
 
     it { expect(body_as_json).to match(reference_hash.as_json) }
   end
+
+  describe 'DELETE #destroy' do
+    let(:schedule) { create(:schedule) }
+    let(:destroy_action) { delete :destroy, params: { id: schedule.id } }
+
+    before do
+      schedule
+    end
+
+    it { expect { destroy_action }. to change(Schedule, :count).by(-1) }
+  end
 end
