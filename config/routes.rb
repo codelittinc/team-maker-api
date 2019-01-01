@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   resources :resources
 
   resources :tags
+
+  resources :schedules
 end
