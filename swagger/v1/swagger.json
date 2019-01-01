@@ -184,6 +184,45 @@
         }
       }
     },
+    "/schedules": {
+      "get": {
+        "summary": "Retrieves all schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "project_id": {
+                  "type": "integer"
+                },
+                "resource_id": {
+                  "type": "integer"
+                },
+                "schedule_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "id",
+                "project_id",
+                "resource_id",
+                "schedule_type_id"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/tags": {
       "post": {
         "summary": "Creates a tag",
