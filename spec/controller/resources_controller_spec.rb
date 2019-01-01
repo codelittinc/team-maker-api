@@ -3,11 +3,7 @@ require 'rails_helper'
 RSpec.describe ResourcesController, type: :controller do
   describe 'GET #index' do
     before do
-      role = Role.create!(name: 'Engineer')
-      resources_type = ResourceType.create!(name: 'Employee')
-      Resource.create!(name: 'Kaio Cristian',
-                       role_id: role.id,
-                       resource_type_id: resources_type.id)
+      create(:resource)
 
       get :index
     end
@@ -24,11 +20,8 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'GET #show/:id' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id) }
+    let(:resource) { create(:resource) }
+
     let(:reference_hash) do
       { id: resource.id,
         name: resource.name,
@@ -48,18 +41,17 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'GET #create' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-
+    let(:role) { create(:role) }
+    let(:resources_type) { create(:resource_type) }
     let(:resource) do
-      { name: 'Kaio Cristian',
-        role_id: role.id,
-        resource_type_id: resources_type.id }
+      attributes_for(:resource,
+                     role_id: role.id,
+                     resource_type_id: resources_type.id)
     end
 
     let(:reference_hash) do
       { id: Resource.last.id,
-        name: 'Kaio Cristian',
+        name: Resource.last.name,
         role_id: role.id,
         resource_type_id: resources_type.id }
     end
@@ -76,11 +68,7 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id) }
+    let(:resource) { create(:resource) }
     let(:destroy_action) { delete :destroy, params: { id: resource.id } }
 
     before do
@@ -91,15 +79,13 @@ RSpec.describe ResourcesController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:role) { Role.create!(name: 'Engineer') }
-    let(:resources_type) { ResourceType.create!(name: 'Employee') }
-    let(:resource) { Resource.create!(name: 'Kaio Cristian',
-                                   role_id: role.id,
-                                   resource_type_id: resources_type.id) }
+    let(:role) { create(:role) }
+    let(:resources_type) { create(:resource_type) }
+    let(:resource) { create(:resource) }
 
     let(:resource_updated) do
       { id: Resource.last.id,
-        name: 'Raphael André',
+        name: Resource.last.name,
         role_id: role.id,
         resource_type_id: resources_type.id }
     end
