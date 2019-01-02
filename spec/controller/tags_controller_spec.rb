@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TagsController, type: :controller do
   describe 'GET #index' do
     before do
-      Tag.create!(name: 'Ruby')
+      create(:tag)
 
       get :index
     end
@@ -12,7 +12,7 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(response.body).to look_like_json }
 
-    it 'Every object on response should have the own attributes as keys'do
+    it 'Every object on response should have the own attributes as keys' do
       body_as_json.each { |tag| expect(tag.keys).to match_array(%w[id name]) }
     end
 
@@ -20,7 +20,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'GET #show/:id' do
-    let(:tag) { Tag.create!(name: 'Ruby') }
+    let(:tag) { create(:tag) }
 
     let(:reference_hash) do
       { id: tag.id,
@@ -39,11 +39,11 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'GET #create' do
-    let(:tag) { { name: 'Ruby' } }
+    let(:tag) { attributes_for(:tag) }
 
     let(:reference_hash) do
       { id: Tag.last.id,
-        name: 'Ruby' }
+        name: Tag.last.name }
     end
 
     before do
@@ -58,7 +58,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    let(:tag) { Tag.create!(name: 'Ruby') }
+    let(:tag) { create(:tag) }
     let(:destroy_action) { delete :destroy, params: { id: tag.id } }
 
     before do
@@ -69,7 +69,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'PATCH #update' do
-    let(:tag) { Tag.create!(name: 'Ruby') }
+    let(:tag) { create(:tag) }
     let(:tag_updated) do
       { id: Tag.last.id,
         name: 'Rails' }

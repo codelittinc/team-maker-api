@@ -1,4 +1,3 @@
-
 require 'swagger_helper'
 
 describe 'Resources API' do
@@ -17,13 +16,14 @@ describe 'Resources API' do
       }
 
       response '201', 'Created' do
-        let(:role) { Role.create!(name: 'VP') }
-        let(:resources_type) { ResourceType.create!(name: 'Full Time') }
+        let(:role) { create(:role) }
+        let(:resources_type) { create(:resource_type) }
         let(:resource) do
-          { name: 'Raphael',
-            role_id: role.id,
-            resource_type_id: resources_type.id }
+          attributes_for(:resource,
+                         role_id: role.id,
+                         resource_type_id: resources_type.id)
         end
+
         run_test!
       end
 
@@ -49,13 +49,8 @@ describe 'Resources API' do
                },
                required: %w[name role_id resource_type_id]
 
-        let(:role) { Role.create!(name: 'Intern') }
-        let(:resources_type) { ResourceType.create!(name: 'Freela') }
-        let(:id) do
-          Resource.create!(name: 'Marcelo',
-                           role_id: role.id,
-                           resource_type_id: resources_type.id).id
-        end
+        let(:id) { create(:resource).id }
+
         run_test!
       end
 
@@ -72,11 +67,9 @@ describe 'Resources API' do
       produces 'application/json'
 
       response '200', 'OK' do
-        role = Role.create!(name: 'Software Developer')
-        resources_type = ResourceType.create!(name: 'Temporary')
-        Resource.create!(name: 'Ricardo',
-                         role_id: role.id,
-                         resource_type_id: resources_type.id)
+        before do
+          create(:resource)
+        end
 
         schema type: :json,
                properties: {
@@ -99,13 +92,8 @@ describe 'Resources API' do
       parameter name: :id, in: :path, type: :string
 
       response '204', 'No Content' do
-        let(:role) { Role.create!(name: 'CEO') }
-        let(:resources_type) { ResourceType.create!(name: 'Intern') }
-        let(:id) do
-          Resource.create!(name: 'João',
-                           role_id: role.id,
-                           resource_type_id: resources_type.id).id
-        end
+        let(:id) { create(:resource).id }
+
         run_test!
       end
 

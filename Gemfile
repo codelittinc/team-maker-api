@@ -9,6 +9,10 @@ gem 'rails', '~> 5.2.1'
 gem 'rswag', '~> 2.0', '>= 2.0.5'
 #Database Cleaner is a set of strategies for cleaning your database in Ruby.
 gem 'database_cleaner', '~> 1.7'
+#Factory_bot is a fixtures replacement with a straightforward definition syntax
+gem 'factory_bot_rails', '~> 4.11', '>= 4.11.1'
+#Faker gem is a port of Perl's Data::Faker library that generates fake data.
+gem 'faker', '~> 1.9', '>= 1.9.1'
 # Pg is the Ruby interface to the PostgreSQL RDBMS.
 gem 'pg', '~> 1.1', '>= 1.1.3'
 # Use Puma as the app server

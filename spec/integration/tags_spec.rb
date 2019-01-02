@@ -15,7 +15,7 @@ describe 'Tags API' do
       }
 
       response '201', 'Created' do
-        let(:tag) { { name: 'Ruby' } }
+        let(:tag) { attributes_for(:tag) }
         run_test!
       end
 
@@ -41,7 +41,7 @@ describe 'Tags API' do
           },
           required: [ 'id', 'name' ]
 
-        let(:id) { Tag.create(name: 'Ruby').id }
+        let(:id) { create(:tag).id }
         run_test!
       end
 
@@ -59,7 +59,9 @@ describe 'Tags API' do
       produces 'application/json'
 
       response '200', 'OK' do
-        Tag.create(name: 'Ruby')
+        before do
+          create(:tag)
+        end
 
         schema type: :json,
           properties: {
@@ -81,7 +83,7 @@ describe 'Tags API' do
       parameter name: :id, in: :path, type: :string
 
       response '204', 'No Content' do
-        let(:id) { Tag.create(name: 'Ruby').id }
+        let(:id) { create(:tag).id }
         run_test!
       end
 

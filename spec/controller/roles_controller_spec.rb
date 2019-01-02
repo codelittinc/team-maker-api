@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RolesController, type: :controller do
   describe 'GET #index' do
     before do
-      Role.create(name: 'Engineer')
+      create(:role)
 
       get :index
     end
