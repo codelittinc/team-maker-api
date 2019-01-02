@@ -18,4 +18,25 @@ RSpec.describe SchedulesController, type: :controller do
 
     it { expect(body_as_json).to match(schedules.as_json) }
   end
+
+  describe 'GET #show/:id' do
+    let(:schedule) { create(:schedule) }
+
+    let(:reference_hash) do
+      { id: schedule.id,
+        project_id: schedule.project_id,
+        resource_id: schedule.resource_id,
+        schedule_type_id: schedule.schedule_type_id }
+    end
+
+    before do
+      get :show, params: { id: schedule.id }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id project_id resource_id schedule_type_id]) }
+
+    it { expect(body_as_json).to match(reference_hash.as_json) }
+  end
 end
