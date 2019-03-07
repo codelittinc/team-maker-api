@@ -6,7 +6,7 @@ jobs:
     # Primary container image where all commands run
     
     docker:
-      - image: circleci/ruby:2.5.1-node
+      - image: circleci/ruby:2.6.1-node-browsers-legacy
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -38,6 +38,10 @@ jobs:
           key: rails-demo-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+      - run:
+          name: Setup database.yml
+          command: cp config/database.ci.yml config/database.yml
 
       - run:
           name: Database Setup

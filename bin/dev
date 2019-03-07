@@ -1,0 +1,4 @@
+#MAINTAINER Kaio Magalhaes, Inc.
+
+docker-compose -f docker-compose.development.yml up -d
+docker exec -it team-maker-dev-app bash

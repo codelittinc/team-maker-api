@@ -1,0 +1,38 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    container_name: team-maker-dev-db
+    env_file:
+      - .env
+
+  app:
+    container_name: team-maker-dev-app
+    tty: true
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+
+    volumes:
+      - .:/share
+
+    env_file:
+      - .env
+
+    ports:
+      - '3000:3000'
+
+    depends_on:
+      - db
+      - box
+
+    links:
+      - db
+      - box
+
+  box:
+    container_name: team-maker-bundle-box
+    image: busybox
+    volumes:
+      - /box
