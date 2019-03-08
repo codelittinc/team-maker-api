@@ -1,5 +1,10 @@
-# README
+# Team Maker API
 
-This project uses the Guard gem to help on TDD.
+## Getting started
 
-Just put "guard init" on console and this gem will execute the tests every time that some change in the code is saved.
+1. Clone the project
+2. [Install docker](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04)
+3. Inside the project folder run `sh bin/dev`
+4. Inside the docker console run `rails s`
+5. Go to your browser and access `http://localhost:3000`
+
