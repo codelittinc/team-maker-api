@@ -67,4 +67,27 @@ RSpec.describe ResourceTypesController, type: :controller do
 
     it { expect { destroy_action }. to change(ResourceType, :count).by(-1) }
   end
+
+  describe 'PATCH #update' do
+    let(:resource_type) { create(:resource_type) }
+
+    let(:resource_type_updated) do
+      { id: ResourceType.last.id,
+        name: Faker::HitchhikersGuideToTheGalaxy.character }
+    end
+
+    before do
+      resource_type
+
+      patch :update, params: { id: resource_type.id, resource_type: resource_type_updated }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
+
+    it { expect(body_as_json).to match(resource_type_updated.as_json) }
+
+    it { expect(body_as_json).to_not match(resource_type.as_json) }
+  end
 end
