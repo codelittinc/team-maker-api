@@ -102,6 +102,31 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Deletes a resource type",
+        "tags": [
+          "Resource Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "200": {
+            "description": "Couldn't find Resource Type with 'id'=./spec/integration/resource_types_spec.rb[1:4:1]"
+          }
+        }
       }
     },
     "/resources": {
