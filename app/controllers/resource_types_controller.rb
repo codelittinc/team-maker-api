@@ -31,6 +31,16 @@ class ResourceTypesController < ApplicationController
     render json: { error: error }
   end
 
+  def update
+    @resource_type = resource_type
+
+    if @resource_type.update(resource_type_params)
+      render json: @resource_type
+    else
+      render json: @resource_type.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def resource_type_id_params
