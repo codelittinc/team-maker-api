@@ -5,6 +5,36 @@
     "version": "v1"
   },
   "paths": {
+    "/resource_types": {
+      "get": {
+        "summary": "Retrieves all resource_types",
+        "tags": [
+          "Resource Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/resources": {
       "post": {
         "summary": "Creates a resource",
