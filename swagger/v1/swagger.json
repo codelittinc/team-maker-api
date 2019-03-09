@@ -35,6 +35,41 @@
         }
       }
     },
+    "/resource_types/{id}": {
+      "get": {
+        "summary": "Retrieves a resource type",
+        "tags": [
+          "Resource Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Couldn't find Resource Type with 'id'=./spec/integration/resource_types_spec.rb[1:2:1]",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/resources": {
       "post": {
         "summary": "Creates a resource",
