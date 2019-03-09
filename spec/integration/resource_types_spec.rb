@@ -47,4 +47,29 @@ describe 'Resource Types API' do
       end
     end
   end
+
+  path '/resource_types' do
+    post 'Creates a resource type' do
+      tags 'Resource Types'
+      consumes 'application/json'
+      parameter name: :resource_type, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: %w[name]
+      }
+
+      response '201', 'Created' do
+        let(:resource_type) { attributes_for(:resource_type) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:resource_type) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end
