@@ -127,6 +127,49 @@
             "description": "Couldn't find Resource Type with 'id'=./spec/integration/resource_types_spec.rb[1:4:1]"
           }
         }
+      },
+      "patch": {
+        "summary": "Updates a resource type",
+        "tags": [
+          "Resource Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "resource_type",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     },
     "/resources": {
