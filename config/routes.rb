@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :resources
 
+  resources :resource_types
+
   resources :tags
 
   resources :schedules
