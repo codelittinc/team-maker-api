@@ -7,6 +7,7 @@
 3. Inside the project folder run `sh bin/dev`
 4. Inside the docker console run:
 ```
+  cp config/database.dev.yml config/database.yml
   bundle exec rake db:create
   bundle exec rake db:migrate
   bundle exec rake db:seed
