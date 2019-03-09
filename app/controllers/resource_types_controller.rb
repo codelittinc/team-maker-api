@@ -23,6 +23,14 @@ class ResourceTypesController < ApplicationController
     end
   end
 
+  def destroy
+    @resource_type = resource_type
+
+    @resource_type.destroy
+  rescue StandardError => error
+    render json: { error: error }
+  end
+
   private
 
   def resource_type_id_params
