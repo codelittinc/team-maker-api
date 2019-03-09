@@ -56,4 +56,15 @@ RSpec.describe ResourceTypesController, type: :controller do
 
     it { expect(body_as_json).to match(reference_hash.as_json) }
   end
+
+  describe 'DELETE #destroy' do
+    let(:resource_type) { create(:resource_type) }
+    let(:destroy_action) { delete :destroy, params: { id: resource_type.id } }
+
+    before do
+      resource_type
+    end
+
+    it { expect { destroy_action }. to change(ResourceType, :count).by(-1) }
+  end
 end
