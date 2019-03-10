@@ -502,6 +502,57 @@
             "description": "Couldn't find Schedule with 'id'=./spec/integration/schedules_spec.rb[1:4:1]"
           }
         }
+      },
+      "patch": {
+        "summary": "Updates a schedule",
+        "tags": [
+          "Schedules"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "schedule",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "project_id": {
+                  "type": "integer"
+                },
+                "resource_id": {
+                  "type": "integer"
+                },
+                "schedule_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "project_id",
+                "resource_id",
+                "schedule_type_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     },
     "/tags": {

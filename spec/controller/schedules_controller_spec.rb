@@ -79,4 +79,32 @@ RSpec.describe SchedulesController, type: :controller do
 
     it { expect { destroy_action }. to change(Schedule, :count).by(-1) }
   end
+
+  describe 'PATCH #update' do
+    let(:project) { create(:project) }
+    let(:resource) { create(:resource) }
+    let(:schedule_type) { create(:schedule_type) }
+    let(:schedule) { create(:schedule) }
+
+    let(:schedule_updated) do
+      { id: Schedule.last.id,
+        project_id: project.id,
+        resource_id: resource.id,
+        schedule_type_id: schedule_type.id }
+    end
+
+    before do
+      schedule
+
+      patch :update, params: { id: schedule.id, schedule: schedule_updated }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id project_id resource_id schedule_type_id]) }
+
+    it { expect(body_as_json).to match(schedule_updated.as_json) }
+
+    it { expect(body_as_json).to_not match(schedule.as_json) }
+  end
 end

@@ -111,4 +111,48 @@ describe 'Schedules API' do
       end
     end
   end
+
+  path '/schedules/{id}' do
+    patch 'Updates a schedule' do
+      tags 'Schedules'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :schedule, in: :body, schema: {
+        type: :object,
+        properties: {
+          project_id: { type: :integer },
+          resource_id: { type: :integer },
+          schedule_type_id: { type: :integer }
+        },
+        required: %w[project_id resource_id schedule_type_id]
+      }
+
+      response '200', 'OK' do
+        let(:id) { create(:schedule).id }
+        let(:project) { create(:project) }
+        let(:resource) { create(:resource) }
+        let(:schedule_type) { create(:schedule_type) }
+        let(:schedule) do
+          attributes_for(:schedule,
+                         project_id: project.id,
+                         resource_id: resource.id,
+                         schedule_type_id: schedule_type.id)
+        end
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:id) { create(:schedule).id }
+        let(:schedule) do
+          attributes_for(:schedule,
+                         project_id: '',
+                         resource_id: '',
+                         schedule_type_id: '')
+        end
+        run_test!
+      end
+    end
+  end
 end
