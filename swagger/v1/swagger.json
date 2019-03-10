@@ -117,6 +117,53 @@
             }
           }
         }
+      },
+      "patch": {
+        "summary": "Updates a project",
+        "tags": [
+          "Projects"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "project",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "project_status_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "project_status_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     },
     "/resource_types": {

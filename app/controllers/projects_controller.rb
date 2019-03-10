@@ -31,6 +31,16 @@ class ProjectsController < ApplicationController
     render json: { error: error }
   end
 
+  def update
+    @project = project
+
+    if @project.update(project_params)
+      render json: @project
+    else
+      render json: @project.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def project_id_params

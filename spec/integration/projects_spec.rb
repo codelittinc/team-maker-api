@@ -105,4 +105,34 @@ describe 'Projects API' do
       end
     end
   end
+
+  path '/projects/{id}' do
+    patch 'Updates a project' do
+      tags 'Projects'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :project, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          project_status_id: { type: :integer }
+        },
+        required: %w[name project_status_id]
+      }
+
+      response '200', 'OK' do
+        let(:id) { create(:project).id }
+        let(:project) { attributes_for(:project) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:id) { create(:project).id }
+        let(:project) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end

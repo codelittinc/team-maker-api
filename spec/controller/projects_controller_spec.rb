@@ -73,4 +73,29 @@ RSpec.describe ProjectsController, type: :controller do
 
     it { expect { destroy_action }. to change(Project, :count).by(-1) }
   end
+
+  describe 'PATCH #update' do
+    let(:project_status) { create(:project_status) }
+    let(:project) { create(:project) }
+
+    let(:project_updated) do
+      { id: Project.last.id,
+        name: Faker::App.name,
+        project_status_id: project_status.id }
+    end
+
+    before do
+      project
+
+      patch :update, params: { id: project.id, project: project_updated }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id name project_status_id]) }
+
+    it { expect(body_as_json).to match(project_updated.as_json) }
+
+    it { expect(body_as_json).to_not match(project.as_json) }
+  end
 end
