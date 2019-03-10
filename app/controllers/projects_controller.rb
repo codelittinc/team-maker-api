@@ -23,6 +23,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = project
+
+    @project.destroy
+  rescue StandardError => error
+    render json: { error: error }
+  end
+
   private
 
   def project_id_params

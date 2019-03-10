@@ -62,4 +62,15 @@ RSpec.describe ProjectsController, type: :controller do
 
     it { expect(body_as_json).to match(reference_hash.as_json) }
   end
+
+  describe 'DELETE #destroy' do
+    let(:project) { create(:project) }
+    let(:destroy_action) { delete :destroy, params: { id: project.id } }
+
+    before do
+      project
+    end
+
+    it { expect { destroy_action }. to change(Project, :count).by(-1) }
+  end
 end
