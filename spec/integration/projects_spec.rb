@@ -107,6 +107,25 @@ describe 'Projects API' do
   end
 
   path '/projects/{id}' do
+    delete 'Deletes a project' do
+      tags 'Projects'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '204', 'No Content' do
+        let(:id) { create(:project).id }
+
+        run_test!
+      end
+
+      response '200', "Couldn't find Project with 'id'=#{id}" do
+        let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
+
+  path '/projects/{id}' do
     patch 'Updates a project' do
       tags 'Projects'
       produces 'application/json'
