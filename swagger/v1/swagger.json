@@ -5,6 +5,40 @@
     "version": "v1"
   },
   "paths": {
+    "/projects": {
+      "get": {
+        "summary": "Retrieves all projects",
+        "tags": [
+          "Projects"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "project_status_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "project_status_id"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/resource_types": {
       "get": {
         "summary": "Retrieves all resource_types",
