@@ -537,6 +537,36 @@
         }
       }
     },
+    "/schedule_types": {
+      "get": {
+        "summary": "Retrieves all schedule types",
+        "tags": [
+          "Schedule Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "json",
+              "properties": {
+                "id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/schedules": {
       "get": {
         "summary": "Retrieves all schedules",
