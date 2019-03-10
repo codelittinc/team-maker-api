@@ -40,6 +40,35 @@ RSpec.describe SchedulesController, type: :controller do
     it { expect(body_as_json).to match(reference_hash.as_json) }
   end
 
+  describe 'GET #create' do
+    let(:project) { create(:project) }
+    let(:resource) { create(:resource) }
+    let(:schedule_type) { create(:schedule_type) }
+    let(:schedule) do
+      attributes_for(:schedule,
+                     project_id: project.id,
+                     resource_id: resource.id,
+                     schedule_type_id: schedule_type.id)
+    end
+
+    let(:reference_hash) do
+      { id: Schedule.last.id,
+        project_id: project.id,
+        resource_id: resource.id,
+        schedule_type_id: schedule_type.id }
+    end
+
+    before do
+      get :create, params: { schedule: schedule }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id project_id resource_id schedule_type_id]) }
+
+    it { expect(body_as_json).to match(reference_hash.as_json) }
+  end
+
   describe 'DELETE #destroy' do
     let(:schedule) { create(:schedule) }
     let(:destroy_action) { delete :destroy, params: { id: schedule.id } }
