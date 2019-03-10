@@ -37,6 +37,44 @@
             }
           }
         }
+      },
+      "post": {
+        "summary": "Creates a project",
+        "tags": [
+          "Projects"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "project_status_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "project_status_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     },
     "/projects/{id}": {
