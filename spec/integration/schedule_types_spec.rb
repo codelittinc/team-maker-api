@@ -22,4 +22,29 @@ describe 'Schedule Types API' do
       end
     end
   end
+
+  path '/schedule_types/{id}' do
+    get 'Retrieves a schedule type' do
+      tags 'Schedule Types'
+      produces 'application/json'
+      parameter name: :id, in: :path, type: :string
+
+      response '200', 'OK' do
+        schema type: :object,
+               properties: {
+                 name: { type: :string }
+               },
+               required: %w[name]
+
+        let(:id) { create(:schedule_type).id }
+
+        run_test!
+      end
+
+      response '200', "Couldn't find Schedule Type with 'id'=#{id}" do
+        let(:id) { 'invalid' }
+        run_test!
+      end
+    end
+  end
 end

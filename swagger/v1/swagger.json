@@ -567,6 +567,41 @@
         }
       }
     },
+    "/schedule_types/{id}": {
+      "get": {
+        "summary": "Retrieves a schedule type",
+        "tags": [
+          "Schedule Types"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Couldn't find Schedule Type with 'id'=./spec/integration/schedule_types_spec.rb[1:2:1]",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        }
+      }
+    },
     "/schedules": {
       "get": {
         "summary": "Retrieves all schedules",
