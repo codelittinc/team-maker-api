@@ -31,6 +31,16 @@ class ScheduleTypesController < ApplicationController
     render json: { error: error }
   end
 
+  def update
+    @schedule_type = schedule_type
+
+    if @schedule_type.update(schedule_type_params)
+      render json: @schedule_type
+    else
+      render json: @schedule_type.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def schedule_type_id_params

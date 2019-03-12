@@ -67,4 +67,27 @@ RSpec.describe ScheduleTypesController, type: :controller do
 
     it { expect { destroy_action }. to change(ScheduleType, :count).by(-1) }
   end
+
+  describe 'PATCH #update' do
+    let(:schedule_type) { create(:schedule_type) }
+
+    let(:schedule_type_updated) do
+      { id: ScheduleType.last.id,
+        name: Faker::Pokemon.name }
+    end
+
+    before do
+      schedule_type
+
+      patch :update, params: { id: schedule_type.id, schedule_type: schedule_type_updated }
+    end
+
+    it { expect(response.body).to look_like_json }
+
+    it { expect(body_as_json.keys).to match_array(%w[id name]) }
+
+    it { expect(body_as_json).to match(schedule_type_updated.as_json) }
+
+    it { expect(body_as_json).to_not match(schedule_type.as_json) }
+  end
 end

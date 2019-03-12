@@ -91,4 +91,33 @@ describe 'Schedule Types API' do
       end
     end
   end
+
+  path '/schedule_types/{id}' do
+    patch 'Updates a schedule type' do
+      tags 'Schedule Types'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :schedule_type, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: %w[name]
+      }
+
+      response '200', 'OK' do
+        let(:id) { create(:schedule_type).id }
+        let(:schedule_type) { attributes_for(:schedule_type) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:id) { create(:schedule_type).id }
+        let(:schedule_type) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end
