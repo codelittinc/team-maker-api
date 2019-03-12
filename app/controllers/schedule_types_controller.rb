@@ -23,6 +23,14 @@ class ScheduleTypesController < ApplicationController
     end
   end
 
+  def destroy
+    @schedule_type = schedule_type
+
+    @schedule_type.destroy
+  rescue StandardError => error
+    render json: { error: error }
+  end
+
   private
 
   def schedule_type_id_params

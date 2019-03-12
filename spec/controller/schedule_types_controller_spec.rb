@@ -56,4 +56,15 @@ RSpec.describe ScheduleTypesController, type: :controller do
 
     it { expect(body_as_json).to match(reference_hash.as_json) }
   end
+
+  describe 'DELETE #destroy' do
+    let(:schedule_type) { create(:schedule_type) }
+    let(:destroy_action) { delete :destroy, params: { id: schedule_type.id } }
+
+    before do
+      schedule_type
+    end
+
+    it { expect { destroy_action }. to change(ScheduleType, :count).by(-1) }
+  end
 end
