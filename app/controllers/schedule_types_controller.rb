@@ -13,10 +13,24 @@ class ScheduleTypesController < ApplicationController
     render json: { error: error }
   end
 
+  def create
+    @schedule_type = ScheduleType.new(schedule_type_params)
+
+    if @schedule_type.save
+      render json: @schedule_type, status: :created, location: @schedule_type
+    else
+      render json: @schedule_type.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def schedule_type_id_params
     params.permit(:id)
+  end
+
+  def schedule_type_params
+    params.require(:schedule_type).permit(:name)
   end
 
   def schedule_type

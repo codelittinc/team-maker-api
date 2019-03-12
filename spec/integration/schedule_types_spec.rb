@@ -47,4 +47,29 @@ describe 'Schedule Types API' do
       end
     end
   end
+
+  path '/schedule_types' do
+    post 'Creates a schedule type' do
+      tags 'Schedule Types'
+      consumes 'application/json'
+      parameter name: :schedule_type, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: %w[name]
+      }
+
+      response '201', 'Created' do
+        let(:schedule_type) { attributes_for(:schedule_type) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:schedule_type) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end
