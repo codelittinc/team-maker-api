@@ -93,4 +93,33 @@ describe 'Tags API' do
       end
     end
   end
+
+  path '/tags/{id}' do
+    patch 'Updates a tag' do
+      tags 'Tags'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :tag, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string }
+        },
+        required: %w[name]
+      }
+
+      response '200', 'OK' do
+        let(:id) { create(:tag).id }
+        let(:tag) { attributes_for(:tag) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:id) { create(:tag).id }
+        let(:tag) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end

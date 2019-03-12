@@ -933,6 +933,49 @@
             "description": "Couldn't find Tag with 'id'=./spec/integration/tags_spec.rb[1:4:1]"
           }
         }
+      },
+      "patch": {
+        "summary": "Updates a tag",
+        "tags": [
+          "Tags"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "tag",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     }
   }
