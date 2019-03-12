@@ -504,6 +504,57 @@
             "description": "Couldn't find Tag with 'id'=./spec/integration/resources_spec.rb[1:4:1]"
           }
         }
+      },
+      "patch": {
+        "summary": "Updates a resource",
+        "tags": [
+          "Resources"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "resource",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "resource_type_id": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "role_id",
+                "resource_type_id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          }
+        }
       }
     },
     "/roles": {

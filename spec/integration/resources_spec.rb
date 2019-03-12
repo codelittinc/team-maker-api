@@ -103,4 +103,35 @@ describe 'Resources API' do
       end
     end
   end
+
+  path '/resources/{id}' do
+    patch 'Updates a resource' do
+      tags 'Resources'
+      produces 'application/json'
+      consumes 'application/json'
+      parameter name: :id, in: :path, type: :string
+      parameter name: :resource, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          role_id: { type: :integer },
+          resource_type_id: { type: :integer }
+        },
+        required: %w[name role_id resource_type_id]
+      }
+
+      response '200', 'OK' do
+        let(:id) { create(:resource).id }
+        let(:resource) { attributes_for(:resource) }
+
+        run_test!
+      end
+
+      response '422', 'Unprocessable Entity' do
+        let(:id) { create(:resource).id }
+        let(:resource) { { name: '' } }
+        run_test!
+      end
+    end
+  end
 end
