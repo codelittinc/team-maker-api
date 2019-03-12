@@ -85,7 +85,7 @@ RSpec.describe ResourcesController, type: :controller do
 
     let(:resource_updated) do
       { id: Resource.last.id,
-        name: Resource.last.name,
+        name: Faker::HitchhikersGuideToTheGalaxy.character,
         role_id: role.id,
         resource_type_id: resources_type.id }
     end
@@ -102,6 +102,6 @@ RSpec.describe ResourcesController, type: :controller do
 
     it { expect(body_as_json).to match(resource_updated.as_json) }
 
-    it { expect(body_as_json).to_not match(resource) }
+    it { expect(body_as_json).to_not match(resource.as_json) }
   end
 end

@@ -72,7 +72,7 @@ RSpec.describe TagsController, type: :controller do
     let(:tag) { create(:tag) }
     let(:tag_updated) do
       { id: Tag.last.id,
-        name: 'Rails' }
+        name: Faker::ProgrammingLanguage.name }
     end
 
     before do
@@ -87,6 +87,6 @@ RSpec.describe TagsController, type: :controller do
 
     it { expect(body_as_json).to match(tag_updated.as_json) }
 
-    it { expect(body_as_json).to_not match(tag) }
+    it { expect(body_as_json).to_not match(tag.as_json) }
   end
 end
